@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myTunes", "myTunes.csproj", "{121B0AF2-4A88-4F85-BA33-A1EE1CCD034A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{121B0AF2-4A88-4F85-BA33-A1EE1CCD034A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121B0AF2-4A88-4F85-BA33-A1EE1CCD034A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121B0AF2-4A88-4F85-BA33-A1EE1CCD034A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121B0AF2-4A88-4F85-BA33-A1EE1CCD034A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61097131-3B12-4FE9-99B1-5A292B4D7B88}
+	EndGlobalSection
+EndGlobal
