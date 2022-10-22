@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\redea\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\redea\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\kcarballo\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\kcarballo\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
