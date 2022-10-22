@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AQb4TEtaxxEDm87yY9D8Mm0yDShJs/xdDq+zl6Ml9Sg8jBEcE3w8mEt7Jz9YS8DU2Uwsedi3z+xMSlFsw7IceQ==",
+  "dgSpecHash": "NAb9J2Xze7nG7lJGQPrQK1qX3B4tnwheZ6gVMyyWMgoYtF0u6uYPpza/gVUHrTqVALq6bVnXvfZ2cocS6YQvCA==",
   "success": true,
   "projectFilePath": "C:\\Users\\kcarballo\\Desktop\\myTunes\\myTunes.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\kcarballo\\.nuget\\packages\\taglibsharp\\2.3.0\\taglibsharp.2.3.0.nupkg.sha512"
+  ],
   "logs": []
 }
