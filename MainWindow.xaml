@@ -5,12 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="403" Width="556">
-    <Grid Margin="0,0,10,-6">
-        <ListBox x:Name="myListBox" Margin="16,94,413,30">
-            <ListBoxItem  x:Name="allMusic" Content="All Music" ></ListBoxItem>
-        </ListBox>
-
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,676,0" SelectedIndex="0"/>
 
     </Grid>
 </Window>
