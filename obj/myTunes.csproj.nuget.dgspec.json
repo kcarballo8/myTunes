@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kcarballo\\Desktop\\myTunes\\myTunes.csproj": {}
+    "C:\\Users\\redea\\source\\repos\\myTunes\\myTunes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kcarballo\\Desktop\\myTunes\\myTunes.csproj": {
+    "C:\\Users\\redea\\source\\repos\\myTunes\\myTunes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kcarballo\\Desktop\\myTunes\\myTunes.csproj",
+        "projectUniqueName": "C:\\Users\\redea\\source\\repos\\myTunes\\myTunes.csproj",
         "projectName": "myTunes",
-        "projectPath": "C:\\Users\\kcarballo\\Desktop\\myTunes\\myTunes.csproj",
-        "packagesPath": "C:\\Users\\kcarballo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kcarballo\\Desktop\\myTunes\\obj\\",
+        "projectPath": "C:\\Users\\redea\\source\\repos\\myTunes\\myTunes.csproj",
+        "packagesPath": "C:\\Users\\redea\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\redea\\Source\\Repos\\myTunes\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\kcarballo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\redea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
