@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,36,676,0" SelectedIndex="0"/>
-
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,676,0" SelectedIndex="0"/>
+        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="129,0,10,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding Title}" Header="Title"/>
+                <DataGridTextColumn Binding="{Binding Artist}" Header="Artist"/>
+                <DataGridTextColumn Binding="{Binding Album}" Header="Album"/>
+                <DataGridTextColumn Binding="{Binding Genre}" Header="Genre"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
