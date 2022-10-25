@@ -58,7 +58,7 @@ namespace myTunes
                     Length = row["length"].ToString()!,
                     Genre = row["genre"].ToString()!,
                     AboutUrl = row["url"].ToString()!,
-                    AlbumImageUrl = row["albumImage"].ToString()
+                    AlbumImageUrl = row["albumImage"].ToString()!
                 });
             }
             dataGrid1.ItemsSource = songs;
