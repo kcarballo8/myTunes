@@ -56,7 +56,7 @@ namespace myTunes
         /// <returns>The song's ID</returns>
         public int AddSong(Song s)
         {
-            DataTable table = musicDataSet.Tables["song"];
+            DataTable? table = musicDataSet.Tables["song"];
             DataRow row = table.NewRow();
 
             row["title"] = s.Title;

@@ -65,25 +65,64 @@ namespace myTunes
             }
             dataGrid1.ItemsSource = songs;
         }
-        private void playButton_Click(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             mediaPlayer.Play();
         }
 
-        private void stopButton_Click(object sender, RoutedEventArgs e)
+        private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             mediaPlayer.Stop();
         }
 
         private void PlaySong_Click(object sender, RoutedEventArgs e)
         {
-            playButton_Click(sender, e);
+            PlayButton_Click(sender, e);
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();
+        }
+
+        private void FolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "",
+                DefaultExt = "*.wma;*.wav;*mp3;*.m4a",
+                Filter = "Media files|*.mp3;*.m4a;*.wma;*.wav|MP3 (*.mp3)|*.mp3|M4A (*.m4a)|*.m4a|Windows Media Audio (*.wma)|*.wma|Wave files (*.wav)|*.wav|All files|*.*"
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                // Selected file is openFileDialog.FileName
+                // Call the MusicRepo method GetSongDetails() to read the song's metadata from the opened file.
+                Song? s = musicRepo.AddSong(openFileDialog.FileName);
+
+                // Call the MusicRepo method AddSong() to add the song to the DataSet.
+                musicRepo.AddSong(s);
+
+                // Call the MusicRepo method Save() to save the DataSet to the music.xml file.
+                musicRepo.Save();
+            }
+        }
+
+        private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            Console.WriteLine(dataGrid1.SelectedItem);
+            Song? song = dataGrid1.SelectedItem as Song;
+           
+           // int songId = Convert.ToInt32(dataGrid1.SelectedItem);
+            Song s = musicRepo.GetSong(song.Id);
+            songTitle.Header = s.Title;
+            songArtist.Header = s.Artist;
+            songAlbum.Header = s.Album;
+            songGenre.Header = s.Genre;
+            mediaPlayer.Open(new Uri(s.Filename));
         }
     }
 }

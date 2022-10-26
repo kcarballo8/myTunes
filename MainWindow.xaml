@@ -8,13 +8,13 @@
         Title="myTunes" Height="400" Width="565" Icon="/tunes.png">
     <Grid Margin="0,0,0,-6">
         <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110"/>
-        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="125,50,10,47">
+        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
-                <DataGridTextColumn Binding="{Binding Title}" Header="Title"/>
-                <DataGridTextColumn Binding="{Binding Artist}" Header="Artist"/>
-                <DataGridTextColumn Binding="{Binding Album}" Header="Album"/>
-                <DataGridTextColumn Binding="{Binding Genre}" Header="Genre"/>
+                <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>
+                <DataGridTextColumn x:Name="songArtist" Binding="{Binding Artist}" Header="Artist"/>
+                <DataGridTextColumn x:Name="songAlbum" Binding="{Binding Album}" Header="Album"/>
+                <DataGridTextColumn x:Name="songGenre" Binding="{Binding Genre}" Header="Genre"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
@@ -23,10 +23,10 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button x:Name="playButton" Content="Play" Margin="126,0,0,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="playButton_Click"/>
-        <Button x:Name="stopButton" Content="Stop" Margin="0,0,263,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="74" Click="stopButton_Click"/>
+        <Button x:Name="playButton" Content="Play" Margin="126,0,0,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="PlayButton_Click"/>
+        <Button x:Name="stopButton" Content="Stop" Margin="0,0,263,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="74" Click="StopButton_Click"/>
         <ToolBar Height="34" VerticalAlignment="Top" Width="565" HorizontalContentAlignment="Stretch">
-            <Button Name="FolderButton" Width="30" Height="30">
+            <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click">
                 <Image Source="folder.png"></Image>
             </Button>
             <Button Name="NewPlaylistButton" Width="30" Height="30">
