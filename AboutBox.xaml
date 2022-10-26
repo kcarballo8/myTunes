@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="AboutBox" Height="280" Width="298" ResizeMode="NoResize">
+        Title="AboutBox" Height="280" Width="298" ResizeMode="NoResize" Icon="/tunes.png">
 
     <Grid x:Name="AboutBox1">
         <Grid.ColumnDefinitions>

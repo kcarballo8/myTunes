@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="565">
+        Title="myTunes" Height="400" Width="565" Icon="/tunes.png">
     <Grid Margin="0,0,0,-6">
         <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110"/>
         <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="125,50,10,47">
@@ -33,7 +33,7 @@
                 <Image Source="new.png"></Image>
             </Button>
             <Separator></Separator>
-            <Button Name="AboutButton" Width="30" Height="30">
+            <Button Name="AboutButton" Width="30" Height="30" Click="AboutButton_Click">
                 <Image Source="about2.png"></Image>
             </Button>
         </ToolBar>

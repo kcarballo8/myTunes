@@ -79,5 +79,11 @@ namespace myTunes
         {
             playButton_Click(sender, e);
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
     }
 }
