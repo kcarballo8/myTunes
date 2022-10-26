@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,676,0" SelectedIndex="0"/>
-        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="129,0,10,10">
+        Title="MainWindow" Height="400" Width="565">
+    <Grid Margin="0,0,0,-6">
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110"/>
+        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="125,50,10,47">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding Title}" Header="Title"/>
@@ -16,6 +16,27 @@
                 <DataGridTextColumn Binding="{Binding Album}" Header="Album"/>
                 <DataGridTextColumn Binding="{Binding Genre}" Header="Genre"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Play" Click="PlaySong_Click" />
+                    <MenuItem Header="Remove" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
+        <Button x:Name="playButton" Content="Play" Margin="126,0,0,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="playButton_Click"/>
+        <Button x:Name="stopButton" Content="Stop" Margin="0,0,263,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="74" Click="stopButton_Click"/>
+        <ToolBar Height="34" VerticalAlignment="Top" Width="565" HorizontalContentAlignment="Stretch">
+            <Button Name="FolderButton" Width="30" Height="30">
+                <Image Source="folder.png"></Image>
+            </Button>
+            <Button Name="NewPlaylistButton" Width="30" Height="30">
+                <Image Source="new.png"></Image>
+            </Button>
+            <Separator></Separator>
+            <Button Name="AboutButton" Width="30" Height="30">
+                <Image Source="about2.png"></Image>
+            </Button>
+        </ToolBar>
+
     </Grid>
 </Window>

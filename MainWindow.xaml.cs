@@ -29,11 +29,13 @@ namespace myTunes
         private readonly MusicRepo musicRepo;
         private readonly ObservableCollection<String> listBoxItems; // Store playlist names and All Music string
         private readonly ObservableCollection<Song> songs;
+        private readonly MediaPlayer mediaPlayer;
         public MainWindow()
         {
             musicRepo = new MusicRepo();
 
             InitializeComponent();
+            mediaPlayer = new MediaPlayer();
             listBoxItems = new ObservableCollection<string>();
             songs = new ObservableCollection<Song>();
 
@@ -62,6 +64,20 @@ namespace myTunes
                 });
             }
             dataGrid1.ItemsSource = songs;
+        }
+        private void playButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Play();
+        }
+
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+        }
+
+        private void PlaySong_Click(object sender, RoutedEventArgs e)
+        {
+            playButton_Click(sender, e);
         }
     }
 }
