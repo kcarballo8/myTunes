@@ -63,7 +63,7 @@ namespace myTunes
                     AlbumImageUrl = row["albumImage"].ToString()!
                 });
             }
-            dataGrid1.ItemsSource = songs;
+            dataGrid1.ItemsSource = songs; //Bind songs Observable collection to the data grid
         }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
@@ -99,7 +99,7 @@ namespace myTunes
             if (result == true)
             {
                 // Selected file is openFileDialog.FileName
-                // Call the MusicRepo method GetSongDetails() to read the song's metadata from the opened file.
+                // Call the MusicRepo method AddSong() to read the song's metadata from the opened file.
                 Song? s = musicRepo.AddSong(openFileDialog.FileName);
 
                 // Call the MusicRepo method AddSong() to add the song to the DataSet.
@@ -112,11 +112,9 @@ namespace myTunes
 
         private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //when the user selects a song from the data grid
             Console.WriteLine(dataGrid1.SelectedItem);
             Song? song = dataGrid1.SelectedItem as Song;
-           
-           // int songId = Convert.ToInt32(dataGrid1.SelectedItem);
             Song s = musicRepo.GetSong(song.Id);
             songTitle.Header = s.Title;
             songArtist.Header = s.Artist;
