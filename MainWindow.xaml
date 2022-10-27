@@ -29,7 +29,7 @@
             <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click">
                 <Image Source="folder.png"></Image>
             </Button>
-            <Button Name="NewPlaylistButton" Width="30" Height="30">
+            <Button Name="NewPlaylistButton" Width="30" Height="30" Click="NewPlaylistButton_Click">
                 <Image Source="new.png"></Image>
             </Button>
             <Separator></Separator>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,6 +122,13 @@ namespace myTunes
             songAlbum.Header = s.Album;
             songGenre.Header = s.Genre;
             mediaPlayer.Open(new Uri(s.Filename));
+        }
+
+        private void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            newPlaylistWindow box = new newPlaylistWindow();
+            box.ShowDialog();
+            
         }
     }
 }
