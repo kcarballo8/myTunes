@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="New Playlist" Height="235" Width="378">
+        Title="New Playlist" Height="235" Width="398">
     <Grid>
         <Label Content="Playlist Name:" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Height="33" Width="116" FontSize="16"/>
         <TextBox x:Name="playlistTextBox" HorizontalAlignment="Left" Margin="131,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Height="31" FontSize="18"/>
-        <Button x:Name="okButton" Content="Ok" HorizontalAlignment="Left" Margin="46,161,0,0" VerticalAlignment="Top" Height="32" Width="110" FontSize="16" Click="okButton_Click"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="205,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="32" Width="110" FontSize="16" Click="cancelButton_Click">
+        <Button x:Name="okButton" Content="Ok" HorizontalAlignment="Left" Margin="58,161,0,0" VerticalAlignment="Top" Height="32" Width="110" FontSize="16" Click="okButton_Click"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="235,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="32" Width="110" FontSize="16" Click="cancelButton_Click">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

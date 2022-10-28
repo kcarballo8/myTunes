@@ -188,9 +188,17 @@ namespace myTunes
 
         private void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            newPlaylistWindow box = new newPlaylistWindow();
-            box.ShowDialog();
+            newPlaylistWindow playlistWindow = new newPlaylistWindow();
+            playlistWindow.ShowDialog();
             
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            deleteConfirmationWindow confirm = new deleteConfirmationWindow();
+            confirm.ShowDialog();
+
+
         }
     }
 }
