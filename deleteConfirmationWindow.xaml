@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="Confirmation" Height="282" Width="516">
+        Title="Confirmation" Height="234" Width="596">
     <Grid>
-        <Label Content="Are you sure you want to remove this song?" HorizontalAlignment="Left" Margin="101,96,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="yesButton" Content="Yes" HorizontalAlignment="Left" Margin="227,202,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18" Click="yesButton_Click" IsDefault="True"/>
-        <Button x:Name="noButton" Content="No" HorizontalAlignment="Left" Margin="382,202,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18" Click="noButton_Click" IsCancel="True" />
-         </Grid>
+
+        <Label Content="Are you sure you want to remove this song?" HorizontalAlignment="Left" Margin="160,82,0,0" VerticalAlignment="Top" FontSize="20" Width="404"/>
+        <Button x:Name="yesButton" Content="Yes" HorizontalAlignment="Left" Margin="298,148,0,0" VerticalAlignment="Top" Height="36" Width="90" FontSize="18" Click="yesButton_Click" IsDefault="True"/>
+        <Button x:Name="noButton" Content="No" HorizontalAlignment="Left" Margin="448,149,0,0" VerticalAlignment="Top" Height="35" Width="90" FontSize="18" Click="noButton_Click" IsCancel="True" />
+        <Image Margin="47,62,471,69" Source="/questionMark.png"/>
+    </Grid>
 </Window>

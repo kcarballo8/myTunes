@@ -14,6 +14,7 @@
     <None Remove="folder1.png" />
     <None Remove="folder2.jpg" />
     <None Remove="new.png" />
+    <None Remove="questionMark.png" />
     <None Remove="tunes.png" />
   </ItemGroup>
 
@@ -24,6 +25,7 @@
     <Resource Include="folder1.png" />
     <Resource Include="folder2.jpg" />
     <Resource Include="new.png" />
+    <Resource Include="questionMark.png" />
     <Resource Include="tunes.png" />
   </ItemGroup>
 

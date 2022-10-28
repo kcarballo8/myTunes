@@ -209,7 +209,16 @@ namespace myTunes
         {
             deleteConfirmationWindow confirm = new deleteConfirmationWindow();
             confirm.ShowDialog();
-
+            if(confirm.DialogResult == true)    // If user clicked Ok button 
+            {
+                Song? song = dataGrid1.SelectedItem as Song;
+                if(song != null)
+                {
+                    musicRepo.DeleteSong(song.Id);
+                    musicRepo.Save();
+                    songs.Remove(song);
+                }
+            }
 
         }
 
