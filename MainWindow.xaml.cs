@@ -226,5 +226,10 @@ namespace myTunes
         {
             return musicRepo.PlaylistExists(name);
         }
+
+        private void myTunes_Closed(object sender, EventArgs e)
+        {
+            musicRepo.Save();
+        }
     }
 }
