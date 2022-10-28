@@ -48,9 +48,9 @@ namespace myTunes
                 //musicRepo.AddPlaylist(playlist); add to database
             }
             ListBox1.ItemsSource = listBoxItems;    // Bind ObservableCollection to Actual ListBox
-
             foreach (DataRow row in musicRepo.Songs.Rows) //looping over rows of the data table
             {
+     
                 songs.Add(new Song //adding to the observable collection 
                 {
                     Id = (int)row["id"],
@@ -116,15 +116,19 @@ namespace myTunes
             //when the user selects a song from the data grid
             Console.WriteLine(dataGrid1.SelectedItem);
             Song? song = dataGrid1.SelectedItem as Song;
-            Song s = musicRepo.GetSong(song.Id);
 
-            if (song != null && s != null)  // Prevent exception being thrown if song is not found
+            if (song != null)  // Prevent exception being thrown if song is not found
             {
-                songTitle.Header = s.Title;
-                songArtist.Header = s.Artist;
-                songAlbum.Header = s.Album;
-                songGenre.Header = s.Genre;
-                mediaPlayer.Open(new Uri(s.Filename));
+                Song s = musicRepo.GetSong(song.Id);
+                if(s != null)
+                {
+                    songTitle.Header = s.Title;
+                    songArtist.Header = s.Artist;
+                    songAlbum.Header = s.Album;
+                    songGenre.Header = s.Genre;
+                    mediaPlayer.Open(new Uri(s.Filename));
+                }
+               
             }
             
         }
@@ -137,24 +141,20 @@ namespace myTunes
                 DataTable data = musicRepo.SongsForPlaylist(playlist);
 
 
-                foreach (Song s in songs.ToList())
+                foreach (Song s in songs.ToList())  // Delete all songs from observable collection
                 {
                     songs.Remove(s);
                 }
 
-                foreach(DataRow row in data.Rows)
+                foreach(DataRow row in data.Rows)   
                 {
                     songs.Add(new Song //adding to the observable collection 
                     {
-                        Id = Int32.Parse(row[0].ToString()),
-                        Title = row[4].ToString()!,
+                        Id = Int32.Parse(row[0].ToString()!),
+                        Title = row[2].ToString()!,
                         Artist = row[3].ToString()!,
-                        Album = row[2].ToString()!,
-                        //Filename = row["filename"].ToString()!,
-                        //Length = row["length"].ToString()!,
+                        Album = row[4].ToString()!,
                         Genre = row[5].ToString()!,
-                        //AboutUrl = row["url"].ToString()!,
-                        //AlbumImageUrl = row["albumImage"].ToString()!
                     });
                 }
 
