@@ -28,7 +28,7 @@ namespace myTunes
     public partial class MainWindow : Window
     {
         private readonly MusicRepo musicRepo;
-        private readonly ObservableCollection<String> listBoxItems; // Store playlist names and All Music string
+        private readonly ObservableCollection<String> playlists; // Store playlist names and All Music string
         private readonly ObservableCollection<Song> songs;
         private readonly MediaPlayer mediaPlayer;
         public MainWindow()
@@ -37,17 +37,17 @@ namespace myTunes
 
             InitializeComponent();
             mediaPlayer = new MediaPlayer();
-            listBoxItems = new ObservableCollection<string>();
+            playlists = new ObservableCollection<string>();
             songs = new ObservableCollection<Song>();
 
-            listBoxItems.Add("All Music");  // Add 'All Music' tab to list box
+            playlists.Add("All Music");  // Add 'All Music' tab to list box
             
             foreach(String playlist in musicRepo.Playlists) // For each playlist
             {
-                listBoxItems.Add(playlist); // Add playlist to listbox
+                playlists.Add(playlist); // Add playlist to listbox
                 //musicRepo.AddPlaylist(playlist); add to database
             }
-            ListBox1.ItemsSource = listBoxItems;    // Bind ObservableCollection to Actual ListBox
+            ListBox1.ItemsSource = playlists;    // Bind ObservableCollection to Actual ListBox
             foreach (DataRow row in musicRepo.Songs.Rows) //looping over rows of the data table
             {
      
@@ -190,6 +190,18 @@ namespace myTunes
         {
             newPlaylistWindow playlistWindow = new newPlaylistWindow();
             playlistWindow.ShowDialog();
+            string playlist = playlistWindow.playlistTextBox.Text;
+            if(playlistWindow.DialogResult == true && musicRepo.PlaylistExists(playlist) == false)
+            {
+                musicRepo.AddPlaylist(playlist);
+                playlists.Add(playlist);
+            }
+            else if(musicRepo.PlaylistExists(playlist))
+            {
+                playlistWarning warn = new playlistWarning();
+                warn.warningMessage.Content = "Playlist name already exists";
+                warn.ShowDialog();
+            }
             
         }
 
@@ -199,6 +211,11 @@ namespace myTunes
             confirm.ShowDialog();
 
 
+        }
+
+        public bool doesPlaylistExist(string name)
+        {
+            return musicRepo.PlaylistExists(name);
         }
     }
 }

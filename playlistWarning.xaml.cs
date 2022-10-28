@@ -15,27 +15,18 @@ using System.Windows.Shapes;
 namespace myTunes
 {
     /// <summary>
-    /// Interaction logic for deleteConfirmationWindow.xaml
+    /// Interaction logic for playlistWarning.xaml
     /// </summary>
-    public partial class deleteConfirmationWindow : Window
+    public partial class playlistWarning : Window
     {
-        public deleteConfirmationWindow()
+        public playlistWarning()
         {
             InitializeComponent();
         }
 
-       
-
-  
-
-        private void yesButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-        }
-
-        private void noButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
+            this.Close();
         }
     }
 }

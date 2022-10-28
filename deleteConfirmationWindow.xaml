@@ -8,7 +8,7 @@
         Title="Confirmation" Height="282" Width="516">
     <Grid>
         <Label Content="Are you sure you want to remove this song?" HorizontalAlignment="Left" Margin="101,96,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="yesButton" Content="Yes" HorizontalAlignment="Left" Margin="227,202,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18" Click="Button_Click"/>
-        <Button x:Name="noButton" Content="No" HorizontalAlignment="Left" Margin="382,202,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18" Click="Button_Click_1" />
+        <Button x:Name="yesButton" Content="Yes" HorizontalAlignment="Left" Margin="227,202,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18" Click="yesButton_Click" IsDefault="True"/>
+        <Button x:Name="noButton" Content="No" HorizontalAlignment="Left" Margin="382,202,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="18" Click="noButton_Click" IsCancel="True" />
          </Grid>
 </Window>

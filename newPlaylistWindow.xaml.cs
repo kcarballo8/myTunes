@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,17 @@ namespace myTunes
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if (!String.IsNullOrEmpty(playlistTextBox.Text.Trim()))
+            {
+                DialogResult = true;
+            }
+            else
+            {
+                playlistWarning warning = new playlistWarning();
+                warning.warningMessage.Content = "Please enter a valid playlist name";
+                warning.ShowDialog();
+            }
+            
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
