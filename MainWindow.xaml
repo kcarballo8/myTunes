@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="myTunes" Height="400" Width="565" Icon="/tunes.png">
     <Grid Margin="0,0,0,-6">
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110"/>
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged"/>
         <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
