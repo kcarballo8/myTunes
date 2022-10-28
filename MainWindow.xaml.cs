@@ -116,11 +116,73 @@ namespace myTunes
             Console.WriteLine(dataGrid1.SelectedItem);
             Song? song = dataGrid1.SelectedItem as Song;
             Song s = musicRepo.GetSong(song.Id);
-            songTitle.Header = s.Title;
-            songArtist.Header = s.Artist;
-            songAlbum.Header = s.Album;
-            songGenre.Header = s.Genre;
-            mediaPlayer.Open(new Uri(s.Filename));
+
+            if (song != null && s != null)  // Prevent exception being thrown if song is not found
+            {
+                songTitle.Header = s.Title;
+                songArtist.Header = s.Artist;
+                songAlbum.Header = s.Album;
+                songGenre.Header = s.Genre;
+                mediaPlayer.Open(new Uri(s.Filename));
+            }
+            
+        }
+
+        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string? playlist = ListBox1.SelectedItem.ToString();
+            if(playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
+            {
+                DataTable data = musicRepo.SongsForPlaylist(playlist);
+
+
+                foreach (Song s in songs.ToList())
+                {
+                    songs.Remove(s);
+                }
+
+                foreach(DataRow row in data.Rows)
+                {
+                    songs.Add(new Song //adding to the observable collection 
+                    {
+                        Id = Int32.Parse(row[0].ToString()),
+                        Title = row[4].ToString()!,
+                        Artist = row[3].ToString()!,
+                        Album = row[2].ToString()!,
+                        //Filename = row["filename"].ToString()!,
+                        //Length = row["length"].ToString()!,
+                        Genre = row[5].ToString()!,
+                        //AboutUrl = row["url"].ToString()!,
+                        //AlbumImageUrl = row["albumImage"].ToString()!
+                    });
+                }
+
+
+            }
+            else if(playlist != null && playlist == "All Music")
+            {
+                foreach (Song s in songs.ToList())
+                {
+                    songs.Remove(s);
+                }
+
+                foreach(DataRow row in musicRepo.Songs.Rows)
+                {
+                    songs.Add(new Song //adding to the observable collection 
+                    {
+                        Id = (int)row["id"],
+                        Title = row["title"].ToString()!,
+                        Artist = row["artist"].ToString()!,
+                        Album = row["album"].ToString()!,
+                        Filename = row["filename"].ToString()!,
+                        Length = row["length"].ToString()!,
+                        Genre = row["genre"].ToString()!,
+                        AboutUrl = row["url"].ToString()!,
+                        AlbumImageUrl = row["albumImage"].ToString()!
+                    });
+                }
+            }
+            
         }
     }
 }
