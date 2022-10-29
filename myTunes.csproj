@@ -10,9 +10,11 @@
   <ItemGroup>
     <None Remove="about.png" />
     <None Remove="about2.png" />
+    <None Remove="errorIcon.ico" />
     <None Remove="folder.png" />
     <None Remove="folder1.png" />
     <None Remove="folder2.jpg" />
+    <None Remove="infoIcon.ico" />
     <None Remove="new.png" />
     <None Remove="questionMark.png" />
     <None Remove="tunes.png" />
@@ -21,9 +23,11 @@
   <ItemGroup>
     <Resource Include="about.png" />
     <Resource Include="about2.png" />
+    <Resource Include="errorIcon.ico" />
     <Resource Include="folder.png" />
     <Resource Include="folder1.png" />
     <Resource Include="folder2.jpg" />
+    <Resource Include="infoIcon.ico" />
     <Resource Include="new.png" />
     <Resource Include="questionMark.png" />
     <Resource Include="tunes.png" />

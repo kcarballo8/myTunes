@@ -23,11 +23,6 @@ namespace myTunes
         {
             InitializeComponent();
         }
-
-       
-
-  
-
         private void yesButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
