@@ -48,22 +48,7 @@ namespace myTunes
                 //musicRepo.AddPlaylist(playlist); add to database
             }
             ListBox1.ItemsSource = playlists;    // Bind ObservableCollection to Actual ListBox
-            foreach (DataRow row in musicRepo.Songs.Rows) //looping over rows of the data table
-            {
-     
-                songs.Add(new Song //adding to the observable collection 
-                {
-                    Id = (int)row["id"],
-                    Title = row["title"].ToString()!,
-                    Artist = row["artist"].ToString()!,
-                    Album = row["album"].ToString()!,
-                    Filename = row["filename"].ToString()!,
-                    Length = row["length"].ToString()!,
-                    Genre = row["genre"].ToString()!,
-                    AboutUrl = row["url"].ToString()!,
-                    AlbumImageUrl = row["albumImage"].ToString()!
-                });
-            }
+           
             dataGrid1.ItemsSource = songs; //Bind songs Observable collection to the data grid
         }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -120,7 +105,7 @@ namespace myTunes
             if (song != null)  // Prevent exception being thrown if song is not found
             {
                 Song s = musicRepo.GetSong(song.Id);
-                if(s != null)
+                if(s != null)   // Prevent exception being thrown if song is not found
                 {
                     songTitle.Header = s.Title;
                     songArtist.Header = s.Artist;
