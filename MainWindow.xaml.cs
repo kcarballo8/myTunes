@@ -104,14 +104,13 @@ namespace myTunes
             if (song != null)  // Prevent exception being thrown if song is not found
             {
                 Song s = musicRepo.GetSong(song.Id);
-                if(s != null)   // Prevent exception being thrown if song is not found
-                {
-                    songTitle.Header = s.Title;
-                    songArtist.Header = s.Artist;
-                    songAlbum.Header = s.Album;
-                    songGenre.Header = s.Genre;
+              
+                     songTitle.Header = s.Title;
+                     songArtist.Header = s.Artist;
+                     songAlbum.Header = s.Album;
+                     songGenre.Header = s.Genre;
                     mediaPlayer.Open(new Uri(s.Filename));
-                }
+          
                
             }
             
