@@ -7,8 +7,31 @@
         mc:Ignorable="d"
         Title="myTunes" Height="400" Width="565" Icon="/tunes.png" Closed="myTunes_Closed">
     <Grid Margin="0,0,0,-6">
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged"/>
-        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}"  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged">
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Rename" Click="Rename_Click" />
+                    <MenuItem Header="Delete" Click="Delete_Click" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
+            <ToolBar Height="34" VerticalAlignment="Top" Width="565" >
+                <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click">
+                    <Image Source="folder.png"></Image>
+                </Button>
+                <Button Name="NewPlaylistButton" Width="30" Height="30" Click="NewPlaylistButton_Click">
+                    <Image Source="new.png"></Image>
+                </Button>
+                <Separator></Separator>
+                <Button Name="AboutButton" Width="30" Height="30" Click="AboutButton_Click">
+                    <Image Source="about2.png"></Image>
+                </Button>
+            </ToolBar>
+        </StackPanel>
+        
+        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>
@@ -25,18 +48,7 @@
         </DataGrid>
         <Button x:Name="playButton" Content="Play" Margin="126,0,0,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="PlayButton_Click"/>
         <Button x:Name="stopButton" Content="Stop" Margin="0,0,263,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="74" Click="StopButton_Click"/>
-        <ToolBar Height="34" VerticalAlignment="Top" Width="565" HorizontalContentAlignment="Stretch">
-            <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click">
-                <Image Source="folder.png"></Image>
-            </Button>
-            <Button Name="NewPlaylistButton" Width="30" Height="30" Click="NewPlaylistButton_Click">
-                <Image Source="new.png"></Image>
-            </Button>
-            <Separator></Separator>
-            <Button Name="AboutButton" Width="30" Height="30" Click="AboutButton_Click">
-                <Image Source="about2.png"></Image>
-            </Button>
-        </ToolBar>
+       
 
     </Grid>
 </Window>

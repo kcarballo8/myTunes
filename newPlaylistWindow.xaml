@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="New Playlist" Height="118" Width="398" Icon="/new.png" ResizeMode="NoResize">
-    <Grid>
+        Title="New Playlist" Height="129" Width="397" Icon="/new.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-10">
         <Label Content="Playlist Name:" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="33" Width="116" FontSize="14"/>
-        <TextBox x:Name="playlistTextBox" HorizontalAlignment="Left" Margin="135,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="17" FontSize="18"/>
-        <Button x:Name="okButton" Content="_Ok" HorizontalAlignment="Left" Margin="75,58,0,0" VerticalAlignment="Top" Height="20" Width="87" FontSize="14" Click="okButton_Click" IsDefault="True"/>
-        <Button x:Name="cancelButton" Content="_Cancel" HorizontalAlignment="Left" Margin="225,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="20" Width="89" FontSize="14" Click="cancelButton_Click" IsCancel="True">
+        <TextBox x:Name="playlistTextBox" HorizontalAlignment="Left" Margin="126,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" Height="24" FontSize="15"/>
+        <Button x:Name="okButton" Content="_Ok" HorizontalAlignment="Left" Margin="75,58,0,0" VerticalAlignment="Top" Height="24" Width="87" FontSize="14" Click="OkButton_Click" IsDefault="True"/>
+        <Button x:Name="cancelButton" Content="_Cancel" HorizontalAlignment="Left" Margin="225,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="25" Width="89" FontSize="14" Click="CancelButton_Click" IsCancel="True">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

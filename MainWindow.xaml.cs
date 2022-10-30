@@ -100,20 +100,11 @@ namespace myTunes
         {
             //when the user selects a song from the data grid
             Song? song = dataGrid1.SelectedItem as Song;
-
             if (song != null)  // Prevent exception being thrown if song is not found
             {
-                Song s = musicRepo.GetSong(song.Id);
-              
-                     songTitle.Header = s.Title;
-                     songArtist.Header = s.Artist;
-                     songAlbum.Header = s.Album;
-                     songGenre.Header = s.Genre;
-                    mediaPlayer.Open(new Uri(s.Filename));
-          
-               
-            }
-            
+                //Song s = musicRepo.GetSong(song.Id);
+                 mediaPlayer.Open(new Uri(song.Filename)); 
+            }      
         }
 
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
@@ -123,7 +114,7 @@ namespace myTunes
             {
                 DataTable data = musicRepo.SongsForPlaylist(playlist);
 
-
+             
                 foreach (Song s in songs.ToList())  // Delete all songs from observable collection
                 {
                     songs.Remove(s);
@@ -208,7 +199,30 @@ namespace myTunes
  
         private void myTunes_Closed(object sender, EventArgs e)
         {
-            musicRepo.Save();
+           // musicRepo.Save();
+        }
+
+        private void Rename_Click(object sender, RoutedEventArgs e)
+        {
+            Rename_Playlist playlistWindow = new Rename_Playlist(); // Create new window for user to enter name of new playlist
+            playlistWindow.ShowDialog();
+            string playlist = playlistWindow.playlistTextBox.Text;
+            if (playlistWindow.DialogResult == true && musicRepo.PlaylistExists(playlist) == false)  // If user selected Ok button and playlist doesn't already exist
+            {
+                musicRepo.AddPlaylist(playlist);                                // Add playlist to musicRepo   
+                playlists.Add(playlist);                                        // Add playlist name to observable collection
+            }
+            else if (musicRepo.PlaylistExists(playlist))                         // If playlist name already exists
+            {
+                playlistWarning warn = new playlistWarning();                   // Create new playlist warning dialog box
+                warn.warningMessage.Content = "Playlist name already exists";   // Change text on a dialog boxes
+                warn.ShowDialog();                                              // Show dialog box to user because playlist name already exists.
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

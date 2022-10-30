@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +15,11 @@ using System.Windows.Shapes;
 namespace myTunes
 {
     /// <summary>
-    /// Interaction logic for newPlaylistWindow.xaml
+    /// Interaction logic for Rename_Playlist.xaml
     /// </summary>
-    public partial class newPlaylistWindow : Window
+    public partial class Rename_Playlist : Window
     {
-        public newPlaylistWindow()
+        public Rename_Playlist()
         {
             InitializeComponent();
         }
@@ -37,7 +36,6 @@ namespace myTunes
                 warning.warningMessage.Content = "Please enter a valid playlist name";
                 warning.ShowDialog();
             }
-            
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
