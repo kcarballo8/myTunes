@@ -99,7 +99,6 @@ namespace myTunes
         private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //when the user selects a song from the data grid
-            Console.WriteLine(dataGrid1.SelectedItem);
             Song? song = dataGrid1.SelectedItem as Song;
 
             if (song != null)  // Prevent exception being thrown if song is not found
@@ -118,7 +117,7 @@ namespace myTunes
             
         }
 
-        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
         {
             string? playlist = ListBox1.SelectedItem.ToString();
             if(playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
@@ -147,12 +146,12 @@ namespace myTunes
             }
             else if(playlist != null && playlist == "All Music")
             {
-                foreach (Song s in songs.ToList())
+                foreach (Song s in songs.ToList())  // Remove all songs 
                 {
                     songs.Remove(s);
                 }
 
-                foreach(DataRow row in musicRepo.Songs.Rows)
+                foreach(DataRow row in musicRepo.Songs.Rows)    
                 {
                     songs.Add(new Song //adding to the observable collection 
                     {
@@ -171,21 +170,21 @@ namespace myTunes
             
         }
 
-        private void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
+        private void NewPlaylistButton_Click(object sender, RoutedEventArgs e)  // User clicks button to add new playlist
         {
-            newPlaylistWindow playlistWindow = new newPlaylistWindow();
-            playlistWindow.ShowDialog();
+            newPlaylistWindow playlistWindow = new newPlaylistWindow(); // Create new window for user to enter name of new playlist
+            playlistWindow.ShowDialog();                                // Show user new window just created
             string playlist = playlistWindow.playlistTextBox.Text;
-            if(playlistWindow.DialogResult == true && musicRepo.PlaylistExists(playlist) == false)
+            if(playlistWindow.DialogResult == true && musicRepo.PlaylistExists(playlist) == false)  // If user selected Ok button and playlist doesn't already exist
             {
-                musicRepo.AddPlaylist(playlist);
-                playlists.Add(playlist);
+                musicRepo.AddPlaylist(playlist);                                // Add playlist to musicRepo   
+                playlists.Add(playlist);                                        // Add playlist name to observable collection
             }
-            else if(musicRepo.PlaylistExists(playlist))
+            else if(musicRepo.PlaylistExists(playlist))                         // If playlist name already exists
             {
-                playlistWarning warn = new playlistWarning();
-                warn.warningMessage.Content = "Playlist name already exists";
-                warn.ShowDialog();
+                playlistWarning warn = new playlistWarning();                   // Create new playlist warning dialog box
+                warn.warningMessage.Content = "Playlist name already exists";   // Change text on a dialog boxes
+                warn.ShowDialog();                                              // Show dialog box to user because playlist name already exists.
             }
             
         }
@@ -199,19 +198,15 @@ namespace myTunes
                 Song? song = dataGrid1.SelectedItem as Song;
                 if(song != null)
                 {
-                    musicRepo.DeleteSong(song.Id);
-                    musicRepo.Save();
-                    songs.Remove(song);
+                    musicRepo.DeleteSong(song.Id);  // Deletes song         
+                    musicRepo.Save();               // Saves removal of the song
+                    songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
                 }
             }
 
         }
 
-        public bool doesPlaylistExist(string name)
-        {
-            return musicRepo.PlaylistExists(name);
-        }
-
+ 
         private void myTunes_Closed(object sender, EventArgs e)
         {
             musicRepo.Save();
