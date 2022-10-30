@@ -183,6 +183,7 @@ namespace myTunes
         {
             deleteConfirmationWindow confirm = new deleteConfirmationWindow();
             confirm.ShowDialog();
+
             if(confirm.DialogResult == true)    // If user clicked Ok button 
             {
                 Song? song = dataGrid1.SelectedItem as Song;
@@ -211,8 +212,18 @@ namespace myTunes
             string newPlaylistName = playlistWindow.playlistTextBox.Text;
             if (playlistWindow.DialogResult == true && musicRepo.PlaylistExists(newPlaylistName) == false)  // If user selected Ok button and playlist doesn't already exist
             {
-                musicRepo.RenamePlaylist(oldPlaylist, newPlaylistName);                                // Add playlist to musicRepo   
-                
+                musicRepo.RenamePlaylist(oldPlaylist, newPlaylistName);   // rename playlist to musicRepo
+
+                foreach (String playlist in playlists) // For each playlist
+                {
+                    if (playlist == oldPlaylist)
+                    {
+                        playlist.Replace(oldPlaylist, newPlaylistName);
+                    }
+                       // playlist.Replace(oldPlaylist, newPlaylistName);
+                }
+               
+
             }
             else if (musicRepo.PlaylistExists(newPlaylistName))                         // If playlist name already exists
             {

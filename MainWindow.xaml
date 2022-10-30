@@ -32,7 +32,7 @@
         </DockPanel>
         
         <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                  SelectionMode="Single" Margin="125,50,10,47">
+                  SelectionMode="Single" Margin="125,50,10,47" HorizontalContentAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>
