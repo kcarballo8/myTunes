@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
-        mc:Ignorable="d" Height="158" Width="347" Icon="/errorIcon.ico" ResizeMode="NoResize">
+        mc:Ignorable="d" Height="158" Width="347" Icon="/errorIcon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <!-- Icon image from https://iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-window-close-icon.html -->
     <Grid>
         <Label x:Name="warningMessage" Content="Please enter a playlist name" HorizontalAlignment="Left" Margin="81,32,0,0" VerticalAlignment="Top" FontSize="18"/>
