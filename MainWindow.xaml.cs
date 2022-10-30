@@ -93,6 +93,13 @@ namespace myTunes
 
                 // Call the MusicRepo method Save() to save the DataSet to the music.xml file.
                 musicRepo.Save();
+
+                songs.Add(s);
+
+                mediaPlayer.Open(new Uri(s.Filename));
+                mediaPlayer.Play();
+
+
             }
         }
 
@@ -103,11 +110,14 @@ namespace myTunes
             if (song != null)  // Prevent exception being thrown if song is not found
             {
                 //Song s = musicRepo.GetSong(song.Id);
-                 mediaPlayer.Open(new Uri(song.Filename)); 
-            }      
+                mediaPlayer.Open(new Uri(song.Filename));
+
+            }
+
+
         }
 
-        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
+            private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
         {
             string? playlist = ListBox1.SelectedItem.ToString();
             if(playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
@@ -173,7 +183,6 @@ namespace myTunes
             else if(musicRepo.PlaylistExists(playlist))                         // If playlist name already exists
             {
                 playlistWarning warn = new playlistWarning();                   // Create new playlist warning dialog box
-                warn.warningMessage.Content = "Playlist name already exists";   // Change text on a dialog boxes
                 warn.ShowDialog();                                              // Show dialog box to user because playlist name already exists.
             }
             
@@ -206,16 +215,17 @@ namespace myTunes
         {
             Rename_Playlist playlistWindow = new Rename_Playlist(); // Create new window for user to enter name of new playlist
             playlistWindow.ShowDialog();
-            string playlist = playlistWindow.playlistTextBox.Text;
-            if (playlistWindow.DialogResult == true && musicRepo.PlaylistExists(playlist) == false)  // If user selected Ok button and playlist doesn't already exist
+
+            string? oldPlaylist = ListBox1.SelectedItem.ToString();
+            string newPlaylistName = playlistWindow.playlistTextBox.Text;
+            if (playlistWindow.DialogResult == true && musicRepo.PlaylistExists(newPlaylistName) == false)  // If user selected Ok button and playlist doesn't already exist
             {
-                musicRepo.AddPlaylist(playlist);                                // Add playlist to musicRepo   
-                playlists.Add(playlist);                                        // Add playlist name to observable collection
+                musicRepo.RenamePlaylist(oldPlaylist, newPlaylistName);                                // Add playlist to musicRepo   
+                
             }
-            else if (musicRepo.PlaylistExists(playlist))                         // If playlist name already exists
+            else if (musicRepo.PlaylistExists(newPlaylistName))                         // If playlist name already exists
             {
                 playlistWarning warn = new playlistWarning();                   // Create new playlist warning dialog box
-                warn.warningMessage.Content = "Playlist name already exists";   // Change text on a dialog boxes
                 warn.ShowDialog();                                              // Show dialog box to user because playlist name already exists.
             }
         }

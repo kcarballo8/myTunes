@@ -34,7 +34,6 @@ namespace myTunes
             else
             {
                 playlistWarning warning = new playlistWarning();
-                warning.warningMessage.Content = "Please enter a valid playlist name";
                 warning.ShowDialog();
             }
             

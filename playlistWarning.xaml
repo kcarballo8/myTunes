@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
-        mc:Ignorable="d" Height="158" Width="347" Icon="/errorIcon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" Height="165" Width="443" Icon="/errorIcon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <!-- Icon image from https://iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-window-close-icon.html -->
     <Grid>
-        <Label x:Name="warningMessage" Content="Please enter a playlist name" HorizontalAlignment="Left" Margin="81,32,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="warningMessage" Content="There is already a playlist with that name." HorizontalAlignment="Left" Margin="87,30,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button Content="_Ok" HorizontalAlignment="Center" Margin="0,86,0,0" VerticalAlignment="Top" Height="30" Width="76" FontSize="16" IsDefault="True" Click="Button_Click"/>
-        <Image Margin="29,27,278,57" Source="/errorIcon.ico"/>
+        <Image Margin="17,24,342,61" Source="/errorIcon.ico"/>
         <!-- Icon image from  https://iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-window-close-icon.html -->
     </Grid>
 </Window>
