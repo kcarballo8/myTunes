@@ -113,7 +113,7 @@ namespace myTunes
                      songArtist.Header = s.Artist;
                      songAlbum.Header = s.Album;
                      songGenre.Header = s.Genre;
-                    mediaPlayer.Open(new Uri(s.Filename));
+                     mediaPlayer.Open(new Uri(s.Filename));
           
                
             }
@@ -212,7 +212,17 @@ namespace myTunes
             else
             {
                 Song? song = dataGrid1.SelectedItem as Song;
-              
+                string? playlistName = ListBox1.SelectedItem.ToString();
+                if(song != null && playlistName != null)
+                {
+
+                    int position = dataGrid1.SelectedIndex + 1;
+                    musicRepo.RemoveSongFromPlaylist(position, song.Id, playlistName);
+                    songs.Remove(song);
+
+
+
+                }
             }
 
         }
