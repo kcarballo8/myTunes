@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="myTunes" Height="400" Width="565" Icon="/tunes.png" Closed="myTunes_Closed">
+        Title="myTunes" Height="400" Width="565" Icon="/tunes.png" Closed="myTunes_Closed" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,-6">
         <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged">
             <ListBox.ContextMenu>
@@ -16,8 +16,8 @@
             </ListBox.ContextMenu>
         </ListBox>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
-            <ToolBar Height="34" VerticalAlignment="Top" Width="565" >
+        <DockPanel Width="auto" VerticalAlignment="Top" >
+            <ToolBar DockPanel.Dock="Top" >
                 <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click">
                     <Image Source="folder.png"></Image>
                 </Button>
@@ -29,10 +29,10 @@
                     <Image Source="about2.png"></Image>
                 </Button>
             </ToolBar>
-        </StackPanel>
+        </DockPanel>
         
         <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                  SelectionMode="Single" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged">
+                  SelectionMode="Single" Margin="125,50,10,47">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>

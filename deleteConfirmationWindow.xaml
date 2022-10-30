@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="Confirmation" Height="146" Width="446">
+        Title="Confirmation" Height="154" Width="457">
     <Grid>
 
-        <Label Content="Are you sure you want to remove this song?" HorizontalAlignment="Left" Margin="136,37,0,0" VerticalAlignment="Top" FontSize="15" Width="300"/>
+        <Label Content="Are you sure you want to remove this song?" HorizontalAlignment="Left" Margin="122,37,0,0" VerticalAlignment="Top" FontSize="15" Width="300"/>
         <Button x:Name="yesButton" Content="_Yes" HorizontalAlignment="Left" Margin="243,85,0,0" VerticalAlignment="Top" Height="27" Width="79" FontSize="18" Click="yesButton_Click" IsDefault="True"/>
         <Button x:Name="noButton" Content="_No" HorizontalAlignment="Left" Margin="339,85,0,0" VerticalAlignment="Top" Height="27" Width="79" FontSize="18" Click="noButton_Click" IsCancel="True" />
         <Image Margin="48,26,345,39" Source="/questionMark.png" RenderTransformOrigin="0.5,0.5">

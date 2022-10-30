@@ -54,7 +54,10 @@ namespace myTunes
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             Song? song = dataGrid1.SelectedItem as Song;
-            mediaPlayer.Open(new Uri(song.Filename));
+            if (song != null)
+            {
+             mediaPlayer.Open(new Uri(song.Filename));
+            }
             mediaPlayer.Play();
         }
 
@@ -105,22 +108,7 @@ namespace myTunes
             }
         }
 
-        private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //when the user selects a song from the data grid
-            Song? song = dataGrid1.SelectedItem as Song;
-            if (song != null)  // Prevent exception being thrown if song is not found
-            {
-                //Song s = musicRepo.GetSong(song.Id);
-
-         
-
-            }
-
-
-        }
-
-            private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
+        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
         {
             string? playlist = ListBox1.SelectedItem.ToString();
             if(playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
