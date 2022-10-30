@@ -53,6 +53,8 @@ namespace myTunes
         }
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            Song? song = dataGrid1.SelectedItem as Song;
+            mediaPlayer.Open(new Uri(song.Filename));
             mediaPlayer.Play();
         }
 
@@ -110,7 +112,8 @@ namespace myTunes
             if (song != null)  // Prevent exception being thrown if song is not found
             {
                 //Song s = musicRepo.GetSong(song.Id);
-                mediaPlayer.Open(new Uri(song.Filename));
+
+         
 
             }
 
