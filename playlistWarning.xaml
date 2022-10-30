@@ -7,8 +7,8 @@
         mc:Ignorable="d" Height="139" Width="347" Icon="/errorIcon.ico" ResizeMode="NoResize">
     <!-- Icon image from https://iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-window-close-icon.html -->
     <Grid>
-        <Label x:Name="warningMessage" Content="Please enter a playlist name" HorizontalAlignment="Left" Margin="81,32,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Button Content="_Ok" HorizontalAlignment="Center" Margin="0,86,0,0" VerticalAlignment="Top" Height="23" Width="74" FontSize="16" IsDefault="True" Click="Button_Click"/>
+        <Label x:Name="warningMessage" Content="Please enter a playlist name" HorizontalAlignment="Left" Margin="103,32,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Button Content="_Ok" HorizontalAlignment="Center" Margin="0,87,0,0" VerticalAlignment="Top" Height="19" Width="65" IsDefault="True" Click="Button_Click"/>
         <Image Margin="29,27,278,57" Source="/errorIcon.ico" Stretch="Fill"/>
         <!-- Icon image from  https://iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-window-close-icon.html -->
     </Grid>

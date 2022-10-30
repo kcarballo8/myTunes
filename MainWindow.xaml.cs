@@ -21,12 +21,16 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace myTunes
 {
-
+   
     /// <summary>
     /// Interaction logic for MainWindow.xaml
   
     public partial class MainWindow : Window
     {
+
+        private Point startPoint;
+        private string? playlistName;
+
         private readonly MusicRepo musicRepo;
         private readonly ObservableCollection<String> playlists; // Store playlist names and All Music string
         private readonly ObservableCollection<Song> songs;
@@ -39,7 +43,7 @@ namespace myTunes
             mediaPlayer = new MediaPlayer();
             playlists = new ObservableCollection<string>();
             songs = new ObservableCollection<Song>();
-
+           
             playlists.Add("All Music");  // Add 'All Music' tab to list box
             
             foreach(String playlist in musicRepo.Playlists) // For each playlist
@@ -190,17 +194,25 @@ namespace myTunes
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            deleteConfirmationWindow confirm = new deleteConfirmationWindow();
-            confirm.ShowDialog();
-            if(confirm.DialogResult == true)    // If user clicked Ok button 
+            if(ListBox1.SelectedItem.ToString() == "All Music")
+            {
+                deleteConfirmationWindow confirm = new deleteConfirmationWindow();
+                confirm.ShowDialog();
+                if (confirm.DialogResult == true)    // If user clicked Ok button 
+                {
+                    Song? song = dataGrid1.SelectedItem as Song;
+                    if (song != null)
+                    {
+                        musicRepo.DeleteSong(song.Id);  // Deletes song         
+                        musicRepo.Save();               // Saves removal of the song
+                        songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid)
+                    }
+                }
+            }
+            else
             {
                 Song? song = dataGrid1.SelectedItem as Song;
-                if(song != null)
-                {
-                    musicRepo.DeleteSong(song.Id);  // Deletes song         
-                    musicRepo.Save();               // Saves removal of the song
-                    songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
-                }
+              
             }
 
         }
@@ -209,6 +221,60 @@ namespace myTunes
         private void myTunes_Closed(object sender, EventArgs e)
         {
             musicRepo.Save();
+        }
+
+        private void dataGrid1_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
+            Song? song = dataGrid1.SelectedItem as Song;
+            string? songId = song?.Id.ToString();
+            Debug.WriteLine(songId);
+            if(e.LeftButton == MouseButtonState.Pressed && 
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance || 
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                if(songId != null)
+                {
+                    DragDrop.DoDragDrop(dataGrid1, songId, DragDropEffects.Copy);
+                }
+            }
+        }
+
+        private void dataGrid1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
+        }
+
+       
+        private void ListBox1_DragOver(object sender, DragEventArgs e)
+        {
+            Label? playlist = sender as Label;
+           
+            if (playlist != null)
+            {
+                playlistName = playlist.Content.ToString(); 
+                Debug.WriteLine(playlistName);
+            }
+        
+        }
+
+        private void ListBox1_Drop(object sender, DragEventArgs e)
+        {
+
+            e.Effects = DragDropEffects.None;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                //string dataString = (string)e.Data.GetData();
+                string id = (string)e.Data.GetData(DataFormats.StringFormat);
+                int numId = Int32.Parse(id);
+                if (id != null && playlistName != null && playlistName != "All Music")
+                {
+                    musicRepo.AddSongToPlaylist(numId, playlistName);
+
+                }
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace myTunes
         private void noButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
-            this.Close();
+            this.Close();   
         }
     }
 }
