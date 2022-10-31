@@ -34,7 +34,13 @@
     <Grid Margin="0,0,0,-6">
 
 
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged"  >
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged" KeyDown="ListBox1_KeyDown_1"  >
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="RenamePlaylist"  Header="Rename" IsEnabled ="False" Click="Rename_Click" InputGestureText="Ctrl+ R" />
+                    <MenuItem Name="DeletePlaylist" Header="Delete" IsEnabled ="False" Click="Delete_Click" InputGestureText="Del" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label x:Name="allMusic" Content="{Binding}" AllowDrop="True" DragOver="ListBox1_DragOver" Drop="ListBox1_Drop"></Label>

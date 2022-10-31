@@ -84,57 +84,48 @@ namespace myTunes
             bool? result = openFileDialog.ShowDialog();
             if (result == true)
             {
-                // Selected file is openFileDialog.FileName
-                // Call the MusicRepo method AddSong() to read the song's metadata from the opened file.
+               // string? selectedPlaylist = ListBox1.SelectedItem?.ToString();
+                Song? s = musicRepo.AddSong(openFileDialog.FileName);
+                //musicRepo.AddSong(s);
+                songs.Add(s);
+                mediaPlayer.Open(new Uri(s.Filename));
 
-                string? selectedPlaylist = ListBox1.SelectedItem?.ToString();
-                if(selectedPlaylist == "All Music") {
 
-                    Song? s = musicRepo.AddSong(openFileDialog.FileName);
+                //if (selectedPlaylist == "All Music") {
 
-                    // Call the MusicRepo method AddSong() to add the song to the DataSet.
-                    //musicRepo.AddSong(s);
-                    songs.Add(s);
-                    mediaPlayer.Open(new Uri(s.Filename));
-                }
-                else
-                {
-                    Song? newSong = musicRepo.AddSong(openFileDialog.FileName);
-                    musicRepo.AddSongToPlaylist(newSong.Id, selectedPlaylist);
-                    //musicRepo.AddSong(newSong);
-                    songs.Add(newSong);
-                    mediaPlayer.Open(new Uri(newSong.Filename));
-                }
-
-               
-
-                //// Call the MusicRepo method Save() to save the DataSet to the music.xml file.
-                //musicRepo.Save();
+                //    Song? s = musicRepo.AddSong(openFileDialog.FileName);
+                //    //musicRepo.AddSong(s);
+                //    songs.Add(s);
+                //    mediaPlayer.Open(new Uri(s.Filename));
+                //}
+                //else
+                //{
+                //    Song? newSong = musicRepo.AddSong(openFileDialog.FileName);
+                //    musicRepo.AddSongToPlaylist(newSong.Id, selectedPlaylist);
+                //    //musicRepo.AddSong(newSong);
+                //    songs.Add(newSong);
+                //    mediaPlayer.Open(new Uri(newSong.Filename));
+                //}
                 mediaPlayer.Play();
                 dataGrid1.SelectedItem = songs.Last();
-                canStop = true;
-                
+                canStop = true;  
             }
         }
-
-        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
+        private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e) // If user selects another album or when the app originally opens
         {
-            string? playlist;
-            
-
-            playlist = ListBox1.SelectedItem?.ToString();
+            string? playlist = ListBox1.SelectedItem?.ToString();
             
             if (playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
             {
                 RenamePlaylist.IsEnabled = true;
                 DeletePlaylist.IsEnabled = true;
+                RenamePlaylist.Header = "Rename Playlist";
                 DataTable data = musicRepo.SongsForPlaylist(playlist);
 
                 foreach (Song s in songs.ToList())  // Delete all songs from observable collection
                 {
                     songs.Remove(s);
                 }
-
                 foreach(DataRow row in data.Rows)   
                 {
                     songs.Add(new Song //adding to the observable collection 
@@ -147,7 +138,6 @@ namespace myTunes
                     });
                 }
                 selected = false;
-
             }
             else if(playlist != null && playlist == "All Music")
             {
@@ -176,7 +166,6 @@ namespace myTunes
                 }
                 selected = false;
             }
-            
         }
 
         private void NewPlaylistButton_Click(object sender, RoutedEventArgs e)  // User clicks button to add new playlist
@@ -196,30 +185,32 @@ namespace myTunes
             }
             
         }
-
         private void DeleteSong_Click(object sender, RoutedEventArgs e)
         {
-            deleteConfirmationWindow confirm = new deleteConfirmationWindow();
-            confirm.ShowDialog();
-
-            if(confirm.DialogResult == true)    // If user clicked Ok button 
+            string? playlist = ListBox1.SelectedItem?.ToString();
+            Song? song = dataGrid1.SelectedItem as Song;
+            if (playlist == "All Music")
             {
-                Song? song = dataGrid1.SelectedItem as Song;
-                if(song != null)
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to remove?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (messageBoxResult == MessageBoxResult.Yes && song != null)
                 {
                     musicRepo.DeleteSong(song.Id);  // Deletes song         
-                    musicRepo.Save();               // Saves removal of the song
+                   // musicRepo.Save();               // Saves removal of the song
+                    songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
+                   
+                }
+            }
+            else
+            {
+                if (song != null)
+                {
+                    musicRepo.DeleteSong(song.Id);  // Deletes song         
+                    //musicRepo.Save();               // Saves removal of the song
                     songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
                 }
             }
             selected = false;
         }
-
-        private void myTunes_Closed(object sender, EventArgs e) // Executes right before the program is closed
-        {
-           // musicRepo.Save();     // Save all changes
-        }
-
         private void Rename_Click(object sender, RoutedEventArgs e)
         {
             Rename_Playlist playlistWindow = new Rename_Playlist(); // Create new window for user to enter name of new playlist
@@ -242,8 +233,6 @@ namespace myTunes
                     }
                     i++;                                       // Increment i
                 }
-               
-
             }
             else if (musicRepo.PlaylistExists(newPlaylistName))                         // If playlist name already exists
             {
@@ -286,7 +275,7 @@ namespace myTunes
             canStop = true;
         }
 
-        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selected = true;
         }
@@ -301,7 +290,56 @@ namespace myTunes
         {
             e.CanExecute = canStop;
         }
-        private void ListBox1_KeyDown(object sender, KeyEventArgs e)
+      
+        private void dataGrid1_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
+            Song? song = dataGrid1.SelectedItem as Song;
+            string? songId = song?.Id.ToString();
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                if (songId != null)
+                {
+                    DragDrop.DoDragDrop(dataGrid1, songId, DragDropEffects.Copy);
+                }
+            }
+        }
+        private void dataGrid1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
+        }
+        private void ListBox1_DragOver(object sender, DragEventArgs e)
+        {
+            Label? playlist = sender as Label;
+
+            if (playlist != null)
+            {
+                playlistName = playlist.Content.ToString();
+            }
+
+        }
+
+        private void ListBox1_Drop(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.None;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                //string dataString = (string)e.Data.GetData();
+                string id = (string)e.Data.GetData(DataFormats.StringFormat);
+                int numId = Int32.Parse(id);
+                if (id != null && playlistName != null && playlistName != "All Music")
+                {
+                    musicRepo.AddSongToPlaylist(numId, playlistName);
+
+                }
+            }
+        }
+
+        private void ListBox1_KeyDown_1(object sender, KeyEventArgs e)
         {
             //https://stackoverflow.com/questions/8072032/capturing-ctrl-x-with-the-keydown-event-of-a-textbox-in-wpf
             string? playlist;
@@ -313,7 +351,13 @@ namespace myTunes
             else if (playlist != "All Music" && e.Key == Key.Delete)
             {
                 Delete_Click(sender, e);
-             }
+            }
         }
+
+        private void myTunes_Closed(object sender, EventArgs e) // Executes right before the program is closed
+        {
+            // musicRepo.Save();     // Save all changes
+        }
+
     }
 }
