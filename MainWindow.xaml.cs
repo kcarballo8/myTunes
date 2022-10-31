@@ -31,6 +31,8 @@ namespace myTunes
         private readonly ObservableCollection<String> playlists; // Store playlist names and All Music string
         private readonly ObservableCollection<Song> songs;
         private readonly MediaPlayer mediaPlayer;
+        bool selected = false;
+        bool canStop = false;
         public MainWindow()
         {
             musicRepo = new MusicRepo();
@@ -51,16 +53,7 @@ namespace myTunes
            
             dataGrid1.ItemsSource = songs; //Bind songs Observable collection to the data grid
         }
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            Song? song = dataGrid1.SelectedItem as Song;
-            if (song != null)
-            {
-             mediaPlayer.Open(new Uri(song.Filename));
-            }
-            mediaPlayer.Play();
-        }
-
+    
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             mediaPlayer.Stop();
@@ -68,7 +61,12 @@ namespace myTunes
 
         private void PlaySong_Click(object sender, RoutedEventArgs e)
         {
-            PlayButton_Click(sender, e);
+            Song? song = dataGrid1.SelectedItem as Song;
+            if (song != null)
+            {
+                mediaPlayer.Open(new Uri(song.Filename));
+            }
+            mediaPlayer.Play();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
@@ -252,6 +250,43 @@ namespace myTunes
                 }
             }
            
+        }
+
+
+        private void PlayCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = selected;
+
+        }
+
+        private void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+            
+            Song? song = dataGrid1.SelectedItem as Song;
+            if (song != null)
+            {
+                mediaPlayer.Open(new Uri(song.Filename));
+            }
+            mediaPlayer.Play();
+            selected = false;
+            canStop = true;
+        }
+
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selected = true;
+            canStop = false;
+        }
+
+        private void StopPlaying_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+        }
+
+        private void Stop_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = canStop;
         }
     }
 }
