@@ -231,7 +231,7 @@ namespace myTunes
  
         private void myTunes_Closed(object sender, EventArgs e)
         {
-            //musicRepo.Save();
+            musicRepo.Save();
         }
 
         private void dataGrid1_MouseMove(object sender, MouseEventArgs e)
