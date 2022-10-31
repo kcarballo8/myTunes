@@ -187,9 +187,9 @@ namespace myTunes
 
         }
 
-        private void myTunes_Closed(object sender, EventArgs e)
+        private void myTunes_Closed(object sender, EventArgs e) // Executes right before the program is closed
         {
-           // musicRepo.Save();
+           // musicRepo.Save();     // Save all changes
         }
 
         private void Rename_Click(object sender, RoutedEventArgs e)
@@ -232,9 +232,9 @@ namespace myTunes
             {
                 if (playlistToDelete != null)
                 {
-                    musicRepo.DeletePlaylist(playlistToDelete);
+                    musicRepo.DeletePlaylist(playlistToDelete); // Delete playlist
                     musicRepo.Save();               // Saves removal of the song
-                    playlists.Remove(playlistToDelete);
+                    playlists.Remove(playlistToDelete);     // Remove playlist name from List box 
                     ListBox1.SelectedIndex = 0; // After deleting playlist return to "All Music" tab
                 }
             }
