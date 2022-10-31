@@ -54,10 +54,7 @@ namespace myTunes
             dataGrid1.ItemsSource = songs; //Bind songs Observable collection to the data grid
         }
     
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            mediaPlayer.Stop();
-        }
+   
 
         private void PlaySong_Click(object sender, RoutedEventArgs e)
         {
@@ -252,7 +249,6 @@ namespace myTunes
            
         }
 
-
         private void PlayCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = selected;
@@ -261,8 +257,6 @@ namespace myTunes
 
         private void PlayCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
-            
             Song? song = dataGrid1.SelectedItem as Song;
             if (song != null)
             {
@@ -276,12 +270,12 @@ namespace myTunes
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selected = true;
-            canStop = false;
         }
 
         private void StopPlaying_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             mediaPlayer.Stop();
+            canStop = false;
         }
 
         private void Stop_CanExecute(object sender, CanExecuteRoutedEventArgs e)

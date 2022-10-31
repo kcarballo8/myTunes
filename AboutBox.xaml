@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
-        Title="AboutBox" Height="280" Width="298" ResizeMode="NoResize" Icon="/tunes.png">
+        Title="AboutBox" Height="246" Width="298" ResizeMode="NoResize" Icon="/tunes.png" WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="AboutBox1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="MyTunes" HorizontalAlignment="Center" Margin="0,34,0,0" VerticalAlignment="Top" FontSize="36" Height="58" Width="154"/>
-        <Label Content="By: Rede Alexander and Karen Carballo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Margin="0,132,0,0"/>
-        <Button Content="OK" HorizontalAlignment="Center" Margin="0,207,0,0" VerticalAlignment="Top" Height="29" Width="118" FontSize="16" IsDefault="True" Click="Button_Click"/>
+        <Label Content="MyTunes" HorizontalAlignment="Center" Margin="0,34,0,0" VerticalAlignment="Top" FontSize="36" Height="58" Width="154" FontFamily="Segoe" Foreground="Aquamarine"/>
+        <Label Content="By: Rede Alexander and Karen Carballo" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Margin="0,108,0,0"/>
+        <Button Content="OK" HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Height="29" Width="70" FontSize="16" IsDefault="True" Click="Button_Click"/>
 
     </Grid>
 </Window>
