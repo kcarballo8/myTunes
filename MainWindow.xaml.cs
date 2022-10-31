@@ -111,6 +111,8 @@ namespace myTunes
             
             if (playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
             {
+                RenamePlaylist.IsEnabled = true;
+                DeletePlaylist.IsEnabled = true;
                 DataTable data = musicRepo.SongsForPlaylist(playlist);
 
              
@@ -135,6 +137,9 @@ namespace myTunes
             }
             else if(playlist != null && playlist == "All Music")
             {
+                RenamePlaylist.IsEnabled = false;
+                DeletePlaylist.IsEnabled = false;
+
                 foreach (Song s in songs.ToList())  // Remove all songs 
                 {
                     songs.Remove(s);
