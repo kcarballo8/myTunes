@@ -27,6 +27,10 @@ namespace myTunes
   
     public partial class MainWindow : Window
     {
+
+        private Point startPoint;
+        private string? playlistName;
+
         private readonly MusicRepo musicRepo;
         private readonly ObservableCollection<String> playlists; // Store playlist names and All Music string
         private readonly ObservableCollection<Song> songs;
