@@ -91,15 +91,18 @@ namespace myTunes
                 musicRepo.Save();
 
                 songs.Add(s);
-
                 mediaPlayer.Open(new Uri(s.Filename));
                 mediaPlayer.Play();
+                dataGrid1.SelectedItem = songs.Last();
+                canStop = true;
+                
             }
         }
 
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
         {
             string? playlist;
+            
 
             playlist = ListBox1.SelectedItem?.ToString();
             
@@ -125,6 +128,7 @@ namespace myTunes
                         Genre = row[5].ToString()!,
                     });
                 }
+                selected = false;
 
             }
             else if(playlist != null && playlist == "All Music")
@@ -152,6 +156,7 @@ namespace myTunes
                         AlbumImageUrl = row["albumImage"].ToString()!
                     });
                 }
+                selected = false;
             }
             
         }
@@ -174,7 +179,7 @@ namespace myTunes
             
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void DeleteSong_Click(object sender, RoutedEventArgs e)
         {
             deleteConfirmationWindow confirm = new deleteConfirmationWindow();
             confirm.ShowDialog();
@@ -189,7 +194,7 @@ namespace myTunes
                     songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
                 }
             }
-
+            selected = false;
         }
 
         private void myTunes_Closed(object sender, EventArgs e)
@@ -277,6 +282,20 @@ namespace myTunes
         private void Stop_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = canStop;
+        }
+        private void ListBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //https://stackoverflow.com/questions/8072032/capturing-ctrl-x-with-the-keydown-event-of-a-textbox-in-wpf
+            string? playlist;
+            playlist = ListBox1.SelectedItem?.ToString();
+            if (playlist != "All Music" && e.Key == Key.R && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                Rename_Click(sender, e);
+            }
+            else if (playlist != "All Music" && e.Key == Key.Delete)
+            {
+                Delete_Click(sender, e);
+            }
         }
     }
 }
