@@ -212,6 +212,7 @@ namespace myTunes
             else
             {
                 Song? song = dataGrid1.SelectedItem as Song;
+                
                 string? playlistName = ListBox1.SelectedItem.ToString();
                 if(song != null && playlistName != null)
                 {
@@ -230,7 +231,7 @@ namespace myTunes
  
         private void myTunes_Closed(object sender, EventArgs e)
         {
-            musicRepo.Save();
+            //musicRepo.Save();
         }
 
         private void dataGrid1_MouseMove(object sender, MouseEventArgs e)
@@ -240,7 +241,6 @@ namespace myTunes
             Vector diff = startPoint - mousePos;
             Song? song = dataGrid1.SelectedItem as Song;
             string? songId = song?.Id.ToString();
-            Debug.WriteLine(songId);
             if(e.LeftButton == MouseButtonState.Pressed && 
                 (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance || 
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
@@ -265,7 +265,6 @@ namespace myTunes
             if (playlist != null)
             {
                 playlistName = playlist.Content.ToString(); 
-                Debug.WriteLine(playlistName);
             }
         
         }
