@@ -263,7 +263,6 @@ namespace myTunes
                 mediaPlayer.Open(new Uri(song.Filename));
             }
             mediaPlayer.Play();
-            selected = false;
             canStop = true;
         }
 
