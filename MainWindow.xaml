@@ -35,8 +35,8 @@
         <ListBox x:Name="ListBox1" d:ItemsSource="{Binding}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Rename" Click="Rename_Click" />
-                    <MenuItem Header="Delete" Click="Delete_Click" />
+                    <MenuItem Name="RenamePlaylist"  Header="Rename" IsEnabled ="False" Click="Rename_Click" InputGestureText="Ctrl+R" />
+                    <MenuItem Name="DeletePlaylist" Header="Delete" IsEnabled ="False" Click="Delete_Click" />
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>
