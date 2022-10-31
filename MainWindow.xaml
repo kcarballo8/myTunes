@@ -6,6 +6,31 @@
         xmlns:local="clr-namespace:myTunes"
         mc:Ignorable="d"
         Title="myTunes" Height="400" Width="565" Icon="/tunes.png" Closed="myTunes_Closed" WindowStartupLocation="CenterScreen">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="Play" Executed="PlayCommand_Executed" CanExecute="PlayCommand_CanExecute" />
+        <CommandBinding Command="Stop" Executed="StopPlaying_Executed" CanExecute="Stop_CanExecute"  />
+    </Window.CommandBindings>
+
+    <Window.Resources>
+        <ControlTemplate x:Key="MyButtonTemplate" TargetType="Button" >
+            <Border Name="Border" BorderThickness="2" CornerRadius="11" BorderBrush="LightGreen" Background="DarkGreen"  >
+                <ContentPresenter Name="InnerText" HorizontalAlignment="Center"
+                VerticalAlignment="Center" TextBlock.Foreground="white" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="pink" />
+                    <Setter TargetName="InnerText" Property="TextBlock.FontWeight" Value="Bold" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter TargetName="Border" Property="Background" Value="black" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid Margin="0,0,0,-6">
         <ListBox x:Name="ListBox1" d:ItemsSource="{Binding}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged">
             <ListBox.ContextMenu>
@@ -30,9 +55,9 @@
                 </Button>
             </ToolBar>
         </DockPanel>
-        
+
         <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                  SelectionMode="Single" Margin="125,50,10,47" HorizontalContentAlignment="Stretch">
+                  SelectionMode="Single" Margin="125,50,10,47"  HorizontalContentAlignment="Stretch" SelectionChanged="dataGrid1_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>
@@ -47,9 +72,12 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button x:Name="playButton" Content="Play" Margin="126,0,0,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Click="PlayButton_Click"/>
-        <Button x:Name="stopButton" Content="Stop" Margin="0,0,263,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="74" Click="StopButton_Click"/>
-       
+        <Button Command="Play" HorizontalAlignment="Left" Template="{StaticResource MyButtonTemplate}" Margin="126,0,0,18" VerticalAlignment="Bottom" Width="75">Play</Button>
+        <Button Command="Stop" HorizontalAlignment="Left" Template="{StaticResource MyButtonTemplate}" Margin="219,0,0,17"  VerticalAlignment="Bottom" Width="75">Stop</Button>
+
+
 
     </Grid>
+
+
 </Window>
