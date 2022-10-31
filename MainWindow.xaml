@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="myTunes" Height="400" Width="565" Icon="/tunes.png" Closed="myTunes_Closed" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,-6">
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged">
+        <ListBox x:Name="ListBox1" d:ItemsSource="{Binding}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged">
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Rename" Click="Rename_Click" />

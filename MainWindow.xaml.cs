@@ -220,13 +220,13 @@ namespace myTunes
                 int i = 0;
                 foreach (String playlist in playlists.ToList()) // For each playlist
                 {
-                    if (playlist == oldPlaylist)
+                    if (playlist == oldPlaylist)                // If current playlist name is the playlist that needs to be renamed
                     {
-                        playlists.Insert(i, newPlaylistName);  
-                        ListBox1.SelectedIndex = i;
-                        playlists.Remove(oldPlaylist);
+                        playlists.Insert(i, newPlaylistName);  // Insert new playlist into ObservableCollection
+                        ListBox1.SelectedIndex = i;            // Changes selected playlist to playlist that was just inserted
+                        playlists.Remove(oldPlaylist);         // Removes old playlist from ObservableCollection
                     }
-                    i++;
+                    i++;                                       // Increment i
                 }
                
 
