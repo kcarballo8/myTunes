@@ -86,16 +86,30 @@ namespace myTunes
             {
                 // Selected file is openFileDialog.FileName
                 // Call the MusicRepo method AddSong() to read the song's metadata from the opened file.
-                Song? s = musicRepo.AddSong(openFileDialog.FileName);
 
-                // Call the MusicRepo method AddSong() to add the song to the DataSet.
-                musicRepo.AddSong(s);
+                string? selectedPlaylist = ListBox1.SelectedItem?.ToString();
+                if(selectedPlaylist == "All Music") {
 
-                // Call the MusicRepo method Save() to save the DataSet to the music.xml file.
-                musicRepo.Save();
+                    Song? s = musicRepo.AddSong(openFileDialog.FileName);
 
-                songs.Add(s);
-                mediaPlayer.Open(new Uri(s.Filename));
+                    // Call the MusicRepo method AddSong() to add the song to the DataSet.
+                    //musicRepo.AddSong(s);
+                    songs.Add(s);
+                    mediaPlayer.Open(new Uri(s.Filename));
+                }
+                else
+                {
+                    Song? newSong = musicRepo.AddSong(openFileDialog.FileName);
+                    musicRepo.AddSongToPlaylist(newSong.Id, selectedPlaylist);
+                    //musicRepo.AddSong(newSong);
+                    songs.Add(newSong);
+                    mediaPlayer.Open(new Uri(newSong.Filename));
+                }
+
+               
+
+                //// Call the MusicRepo method Save() to save the DataSet to the music.xml file.
+                //musicRepo.Save();
                 mediaPlayer.Play();
                 dataGrid1.SelectedItem = songs.Last();
                 canStop = true;
@@ -299,7 +313,7 @@ namespace myTunes
             else if (playlist != "All Music" && e.Key == Key.Delete)
             {
                 Delete_Click(sender, e);
-            }
+             }
         }
     }
 }
