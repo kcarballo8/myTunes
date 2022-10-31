@@ -47,15 +47,12 @@ namespace myTunes
             foreach(String playlist in musicRepo.Playlists) // For each playlist
             {
                 playlists.Add(playlist); // Add playlist to listbox
-                //musicRepo.AddPlaylist(playlist); add to database
             }
             ListBox1.ItemsSource = playlists;    // Bind ObservableCollection to Actual ListBox
            
             dataGrid1.ItemsSource = songs; //Bind songs Observable collection to the data grid
         }
-    
    
-
         private void PlaySong_Click(object sender, RoutedEventArgs e)
         {
             Song? song = dataGrid1.SelectedItem as Song;
@@ -65,7 +62,6 @@ namespace myTunes
             }
             mediaPlayer.Play();
         }
-
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             AboutBox aboutBox = new AboutBox();
@@ -98,8 +94,6 @@ namespace myTunes
 
                 mediaPlayer.Open(new Uri(s.Filename));
                 mediaPlayer.Play();
-
-
             }
         }
 
@@ -113,7 +107,6 @@ namespace myTunes
             {
                 DataTable data = musicRepo.SongsForPlaylist(playlist);
 
-             
                 foreach (Song s in songs.ToList())  // Delete all songs from observable collection
                 {
                     songs.Remove(s);
@@ -130,7 +123,6 @@ namespace myTunes
                         Genre = row[5].ToString()!,
                     });
                 }
-
 
             }
             else if(playlist != null && playlist == "All Music")
@@ -195,7 +187,6 @@ namespace myTunes
 
         }
 
- 
         private void myTunes_Closed(object sender, EventArgs e)
         {
            // musicRepo.Save();
@@ -244,6 +235,7 @@ namespace myTunes
                     musicRepo.DeletePlaylist(playlistToDelete);
                     musicRepo.Save();               // Saves removal of the song
                     playlists.Remove(playlistToDelete);
+                    ListBox1.SelectedIndex = 0; // After deleting playlist return to "All Music" tab
                 }
             }
            
