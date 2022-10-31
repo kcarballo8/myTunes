@@ -32,15 +32,14 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid Margin="0,0,0,-6">
-        
-        
-        <ListBox x:Name="ListBox1" d:ItemsSource="{Binding}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged" KeyDown="ListBox1_KeyDown">
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Name="RenamePlaylist"  Header="Rename" IsEnabled ="False" Click="Rename_Click" InputGestureText="Ctrl+ R" />
-                    <MenuItem Name="DeletePlaylist" Header="Delete" IsEnabled ="False" Click="Delete_Click" InputGestureText="Del" />
-                </ContextMenu>
-            </ListBox.ContextMenu>
+
+
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged"  >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label x:Name="allMusic" Content="{Binding}" AllowDrop="True" DragOver="ListBox1_DragOver" Drop="ListBox1_Drop"></Label>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <DockPanel Width="auto" VerticalAlignment="Top" >
@@ -60,8 +59,9 @@
             
         </DockPanel>
 
-        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                  SelectionMode="Single" Margin="125,50,10,47"  HorizontalContentAlignment="Stretch" SelectionChanged="dataGrid1_SelectionChanged">
+        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False"
+                  IsReadOnly="True" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged" MouseMove="dataGrid1_MouseMove"
+                  PreviewMouseLeftButtonDown="dataGrid1_PreviewMouseLeftButtonDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>
