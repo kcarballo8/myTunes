@@ -240,7 +240,18 @@ namespace myTunes
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            string? playlistToDelete = ListBox1.SelectedItem.ToString();
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to remove?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(messageBoxResult == MessageBoxResult.Yes)
+            {
+                if (playlistToDelete != null)
+                {
+                    musicRepo.DeletePlaylist(playlistToDelete);
+                    musicRepo.Save();               // Saves removal of the song
+                    playlists.Remove(playlistToDelete);
+                }
+            }
+           
         }
     }
 }
