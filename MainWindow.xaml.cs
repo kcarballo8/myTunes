@@ -110,8 +110,11 @@ namespace myTunes
 
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)      // If user selects another album or when the app originally opens
         {
-            string? playlist = ListBox1.SelectedItem.ToString();
-            if(playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
+            string? playlist;
+
+            playlist = ListBox1.SelectedItem?.ToString();
+            
+            if (playlist != null && playlist != "All Music") // Prevent exception being thrown if playlist is null
             {
                 DataTable data = musicRepo.SongsForPlaylist(playlist);
 
@@ -208,19 +211,22 @@ namespace myTunes
             Rename_Playlist playlistWindow = new Rename_Playlist(); // Create new window for user to enter name of new playlist
             playlistWindow.ShowDialog();
 
-            string? oldPlaylist = ListBox1.SelectedItem.ToString();
+            string? oldPlaylist = ListBox1.SelectedItem?.ToString();
             string newPlaylistName = playlistWindow.playlistTextBox.Text;
+
             if (playlistWindow.DialogResult == true && musicRepo.PlaylistExists(newPlaylistName) == false)  // If user selected Ok button and playlist doesn't already exist
             {
                 musicRepo.RenamePlaylist(oldPlaylist, newPlaylistName);   // rename playlist to musicRepo
-
-                foreach (String playlist in playlists) // For each playlist
+                int i = 0;
+                foreach (String playlist in playlists.ToList()) // For each playlist
                 {
                     if (playlist == oldPlaylist)
                     {
-                        playlist.Replace(oldPlaylist, newPlaylistName);
+                        playlists.Insert(i, newPlaylistName);  
+                        ListBox1.SelectedIndex = i;
+                        playlists.Remove(oldPlaylist);
                     }
-                       // playlist.Replace(oldPlaylist, newPlaylistName);
+                    i++;
                 }
                
 
