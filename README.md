@@ -12,7 +12,7 @@ Songs can be added to the program from mp3 files on the users hard drive. There 
 	-Rede:
 	 -steps 6, 7, 8, 11 and additional requirement 1.
 	-Karen: 
-	 -steps 3, 4, 5, 9, 10, and additional requirement 2.
+	 -steps 3, 4, 5, 9, 10, and additional requirement 2 and 3.
 
 5. Percentage of work= 
 	-Karen 50%
