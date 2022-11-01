@@ -84,31 +84,18 @@ namespace myTunes
             bool? result = openFileDialog.ShowDialog();
             if (result == true)
             {
-               // string? selectedPlaylist = ListBox1.SelectedItem?.ToString();
+                string? selectedPlaylist = ListBox1.SelectedItem?.ToString();
+                if(selectedPlaylist != "All Music")
+                {
+                    ListBox1.SelectedItem = "All Music";
+                }
                 Song? s = musicRepo.AddSong(openFileDialog.FileName);
                 //musicRepo.AddSong(s);
                 songs.Add(s);
                 mediaPlayer.Open(new Uri(s.Filename));
-
-
-                //if (selectedPlaylist == "All Music") {
-
-                //    Song? s = musicRepo.AddSong(openFileDialog.FileName);
-                //    //musicRepo.AddSong(s);
-                //    songs.Add(s);
-                //    mediaPlayer.Open(new Uri(s.Filename));
-                //}
-                //else
-                //{
-                //    Song? newSong = musicRepo.AddSong(openFileDialog.FileName);
-                //    musicRepo.AddSongToPlaylist(newSong.Id, selectedPlaylist);
-                //    //musicRepo.AddSong(newSong);
-                //    songs.Add(newSong);
-                //    mediaPlayer.Open(new Uri(newSong.Filename));
-                //}
                 mediaPlayer.Play();
                 dataGrid1.SelectedItem = songs.Last();
-                canStop = true;  
+                canStop = true;
             }
         }
         private void ListBox1_SelectionChanged(object sender, SelectionChangedEventArgs e) // If user selects another album or when the app originally opens
@@ -356,7 +343,7 @@ namespace myTunes
 
         private void myTunes_Closed(object sender, EventArgs e) // Executes right before the program is closed
         {
-            // musicRepo.Save();     // Save all changes
+            musicRepo.Save();     // Save all changes
         }
 
     }
