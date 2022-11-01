@@ -359,13 +359,12 @@ namespace myTunes
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            // link for the text box code : https://stackoverflow.com/questions/7425618/how-can-i-add-a-hint-text-to-wpf-textbox
+            // link for the text box code in the xaml: https://stackoverflow.com/questions/7425618/how-can-i-add-a-hint-text-to-wpf-textbox
             //https://stackoverflow.com/questions/42821518/search-in-datagrid-by-textbox-wpf
            var filtered = songs.Where(Title => Title.Title.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase) 
            || Title.Artist.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase)
            || Title.Album.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase) ||
            Title.Genre.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase));
-            //IndexOf(paragraph, word, CompareOptions.IgnoreCase) 
            dataGrid1.ItemsSource = filtered;
         }
     }
