@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -184,7 +185,6 @@ namespace myTunes
                     musicRepo.DeleteSong(song.Id);  // Deletes song         
                    // musicRepo.Save();               // Saves removal of the song
                     songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
-                   
                 }
             }
             else
@@ -264,6 +264,17 @@ namespace myTunes
 
         private void DataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string? playlist = ListBox1.SelectedItem?.ToString();
+
+            if (playlist != "All Music")
+            {
+                RemoveSong.Header = "Remove from Playlist";
+            }
+            else
+            {
+                RemoveSong.Header = "Remove";
+            }
+           
             selected = true;
         }
 
@@ -278,7 +289,7 @@ namespace myTunes
             e.CanExecute = canStop;
         }
       
-        private void dataGrid1_MouseMove(object sender, MouseEventArgs e)
+        private void DataGrid1_MouseMove(object sender, MouseEventArgs e)
         {
             // Get the current mouse position
             Point mousePos = e.GetPosition(null);
@@ -295,7 +306,7 @@ namespace myTunes
                 }
             }
         }
-        private void dataGrid1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void DataGrid1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(null);
         }
@@ -346,5 +357,16 @@ namespace myTunes
             musicRepo.Save();     // Save all changes
         }
 
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            // link for the text box code : https://stackoverflow.com/questions/7425618/how-can-i-add-a-hint-text-to-wpf-textbox
+            //https://stackoverflow.com/questions/42821518/search-in-datagrid-by-textbox-wpf
+           var filtered = songs.Where(Title => Title.Title.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase) 
+           || Title.Artist.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase)
+           || Title.Album.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase) ||
+           Title.Genre.Contains(TextBox1.Text, System.StringComparison.CurrentCultureIgnoreCase));
+            //IndexOf(paragraph, word, CompareOptions.IgnoreCase) 
+           dataGrid1.ItemsSource = filtered;
+        }
     }
 }

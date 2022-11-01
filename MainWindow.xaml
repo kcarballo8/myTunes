@@ -32,12 +32,12 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid Margin="0,0,0,-6">
-
-
-        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" SelectionChanged="ListBox1_SelectionChanged" KeyDown="ListBox1_KeyDown_1"  >
+        <ListBox x:Name="ListBox1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,50,0,17" SelectedIndex="0" HorizontalAlignment="Left" Width="110" 
+                 SelectionChanged="ListBox1_SelectionChanged" KeyDown="ListBox1_KeyDown_1"  >
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="RenamePlaylist"  Header="Rename" IsEnabled ="False" Click="Rename_Click" InputGestureText="Ctrl+ R" />
+                    <Separator></Separator>
                     <MenuItem Name="DeletePlaylist" Header="Delete" IsEnabled ="False" Click="Delete_Click" InputGestureText="Del" />
                 </ContextMenu>
             </ListBox.ContextMenu>
@@ -60,14 +60,39 @@
                 <Button Name="AboutButton" Width="30" Height="30" Click="AboutButton_Click" ToolTip="About">
                     <Image Source="about2.png"></Image>
                 </Button>
+               
+
             </ToolBar>
-            
-            
+            <TextBox  Name="TextBox1" HorizontalAlignment="Right" Width="123" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="245,-30,12,0" KeyUp="TextBox_KeyUp">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Search" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
         </DockPanel>
 
         <DataGrid x:Name="dataGrid1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False"
-                  IsReadOnly="True" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged" MouseMove="dataGrid1_MouseMove"
-                  PreviewMouseLeftButtonDown="dataGrid1_PreviewMouseLeftButtonDown">
+                  IsReadOnly="True" Margin="125,50,10,47" SelectionChanged="DataGrid1_SelectionChanged" MouseMove="DataGrid1_MouseMove"
+                  PreviewMouseLeftButtonDown="DataGrid1_PreviewMouseLeftButtonDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="songTitle" Binding="{Binding Title}" Header="Title"/>
@@ -78,7 +103,8 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Play" Click="PlaySong_Click" />
-                    <MenuItem Header="Remove" Click="DeleteSong_Click"/>
+                    <Separator></Separator>
+                    <MenuItem Name="RemoveSong" Header="Remove" Click="DeleteSong_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
