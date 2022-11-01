@@ -178,23 +178,23 @@ namespace myTunes
             Song? song = dataGrid1.SelectedItem as Song;
             if (playlist == "All Music")
             {
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to remove?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (messageBoxResult == MessageBoxResult.Yes && song != null)
-                {
-                    musicRepo.DeleteSong(song.Id);  // Deletes song         
-                   // musicRepo.Save();               // Saves removal of the song
-                    songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
-                   
-                }
-            }
-            else
-            {
-                if (song != null)
+                //MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to remove?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo, MessageBoxImage.Question);
+                deleteConfirmationWindow warning = new deleteConfirmationWindow();
+                warning.ShowDialog();
+
+                if (warning.DialogResult == true && song != null)
                 {
                     musicRepo.DeleteSong(song.Id);  // Deletes song         
                     //musicRepo.Save();               // Saves removal of the song
                     songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
+                   
                 }
+            }
+            else if(song != null)
+            {
+                    musicRepo.DeleteSong(song.Id);  // Deletes song         
+                    //musicRepo.Save();               // Saves removal of the song
+                    songs.Remove(song);             // Remove from ObservableCollection (Removes it from datagrid
             }
             selected = false;
         }

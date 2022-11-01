@@ -50,14 +50,14 @@
 
         <DockPanel Width="auto" VerticalAlignment="Top" >
             <ToolBar DockPanel.Dock="Top" >
-                <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click">
+                <Button Name="FolderButton" Width="30" Height="30" Click="FolderButton_Click" ToolTip="Open">
                     <Image Source="folder.png"></Image>
                 </Button>
-                <Button Name="NewPlaylistButton" Width="30" Height="30" Click="NewPlaylistButton_Click">
+                <Button Name="NewPlaylistButton" Width="30" Height="30" Click="NewPlaylistButton_Click" ToolTip="New Playlist">
                     <Image Source="new.png"></Image>
                 </Button>
                 <Separator></Separator>
-                <Button Name="AboutButton" Width="30" Height="30" Click="AboutButton_Click">
+                <Button Name="AboutButton" Width="30" Height="30" Click="AboutButton_Click" ToolTip="About">
                     <Image Source="about2.png"></Image>
                 </Button>
             </ToolBar>
