@@ -8,6 +8,7 @@ Songs can be added to the program from mp3 files on the users hard drive. There 
 3. Additional requirements= 
 	-ability to rename and delete a playlist
 	-control template with two triggers, also changed look and behavior of buttons, added commands to disable the buttons at the appropiate time
+
 4.Teammate's contributions= 
 	-Rede:
 	 -steps 6, 7, 8, 11 and additional requirement 1.
