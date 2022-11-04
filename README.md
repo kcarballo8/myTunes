@@ -5,14 +5,14 @@ Songs can be added to the program from mp3 files on the users hard drive. There 
  
 2. Procrastination penalty= Rede did the list box that shows "All music"
 			Karen did the data grid that displays all music
-3. Additional requirements= 
-	-ability to rename and delete a playlist
-	-control template with two triggers, also changed look and behavior of buttons, added commands to disable the buttons at the appropiate time
+3. Additional requirements=
+    * ability to rename and delete a playlist
+    * control template with two triggers, also changed look and behavior of buttons, added commands to disable the buttons at the appropiate time
 
-4.Teammate's contributions= 
-	-Rede:
+4. Teammate's contributions= 
+    * Rede:
 	 -steps 6, 7, 8, 11 and additional requirement 1.
-	-Karen: 
+    * Karen: 
 	 -steps 3, 4, 5, 9, 10, and additional requirement 2 and 3.
 
 5. Percentage of work= 
